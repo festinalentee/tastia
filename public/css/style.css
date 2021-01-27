@@ -1,0 +1,152 @@
+/* Fonts */
+
+@font-face {
+    font-family: "SegoeUI-SemiboldItalic";
+    font-style: italic;
+    font-weight: 400;
+    src: url("../fonts/seguisbi.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "SegoeUI-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/segoe-ui.ttf") format("truetype");
+}
+
+/* screen - web1-login */
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    opacity: 1;
+    align-items: center;
+    
+}
+
+.web1-login {
+  width: 1280px;
+  height: 800px;
+  background: linear-gradient(180deg, #ffd5a0 0%, #aa8b62 0%, #723332 100%);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0 128px;
+  position: relative;
+  align-items: flex-start;
+
+}
+
+.web1-login .logo {
+    background-color: transparent;
+    height: 78px;
+    margin-top: 361px;
+    position: relative;
+    width: 386px;
+}
+
+.web1-login .component-login {
+    background-color: transparent;
+    height: 298px;
+    margin-left: 122px;
+    margin-top: 250.66px;
+    position: relative;
+    width: 515px;
+}
+
+.web1-login .path-1 {
+    background-color: transparent;
+    height: calc(100.00% + 18px);
+    left: -9px;
+    position: absolute;
+    top: -3px;
+    width: calc(100.00% + 18px);
+}
+
+.web1-login .line-1 {
+    background-color: transparent;
+    height: 1px;
+    left: 40px;
+    position: absolute;
+    top: 32.42%;
+    width: calc(100.00% - 83px);
+}
+
+.web1-login .line-2 {
+    background-color: transparent;
+    bottom: 44.69%;
+    height: 1px;
+    left: 40px;
+    position: absolute;
+    width: calc(100.00% - 83px);
+}
+
+.web1-login .login-button {
+    background: linear-gradient(180deg, #aa8b62 0%, #723332 100%);
+    background-color: transparent;
+    border-radius: 25px;
+    bottom: 36px;
+    box-shadow: 0px 6px 6px rgba(0,0,0,0.161);;
+    height: 57px;
+    position: absolute;
+    right: 43px;
+    width: 199px;
+}
+
+.web1-login .email-input {
+    background-color: transparent;
+    border: none;
+    height: 29px;
+    left: 46px;
+    letter-spacing: 0.00px;
+    line-height: 20px;
+    padding: 0;
+    position: absolute;
+    text-align: left;
+    top: calc(24.09% - 7px);
+    white-space: nowrap;
+    width: 50px;
+}
+.web1-login .email-input::placeholder {
+    color: rgba(112,112,112,0.6);
+}
+
+.web1-login .password-input {
+    background-color: transparent;
+    border: none;
+    height: 29px;
+    left: 46px;
+    letter-spacing: 0.00px;
+    line-height: 20px;
+    padding: 0;
+    position: absolute;
+    text-align: left;
+    top: calc(49.36% - 14px);
+    white-space: nowrap;
+    width: 86px;
+}
+.web1-login .password-input::placeholder {
+    color: rgba(112,112,112,0.6);
+}
+
+.web1-login .register-button {
+    background: linear-gradient(180deg, #aa8b62 0%, #723332 100%);
+    background-color: transparent;
+    border-radius: 25px;
+    bottom: 36px;
+    box-shadow: 0px 6px 6px rgba(0,0,0,0.161);;
+    height: 57px;
+    position: absolute;
+    right: 276px;
+    width: 199px;
+  }
