@@ -1,11 +1,10 @@
-/* Fonts */
 
 @font-face {
     font-family: "SegoeUI-SemiboldItalic";
     font-style: italic;
     font-weight: 400;
     src: url("../fonts/seguisbi.ttf") format("truetype");
-  }
+}
 
 @font-face {
     font-family: "SegoeUI-Regular";
@@ -14,139 +13,183 @@
     src: url("../fonts/segoe-ui.ttf") format("truetype");
 }
 
-/* screen - web1-login */
-
 body {
     margin: 0;
+    /*background: image("../img/path-2@1x.png");
+    display: flex;*/
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    background: transparent linear-gradient(180deg, #ffd5a0 0%, #aa8b62 0%, #723332 100%);
     display: flex;
     flex-direction: row;
-    padding: 0;
-    margin: 0;
     justify-content: center;
-    opacity: 1;
     align-items: center;
-    
 }
 
-.web1-login {
-  width: 1280px;
-  height: 800px;
-  background: linear-gradient(180deg, #ffd5a0 0%, #aa8b62 0%, #723332 100%);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: 0 128px;
-  position: relative;
-  align-items: flex-start;
-
-}
-
-.web1-login .logo {
+.logo {
     background-color: transparent;
     height: 78px;
-    margin-top: 361px;
+    margin-top: 100px;
     position: relative;
     width: 386px;
 }
 
-.web1-login .component-login {
-    background-color: transparent;
-    height: 298px;
+.projects {
+    background: white;
+}
+
+form.login, form.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #FFFFFFE0 0 0 no-repeat padding-box;;
+    align-items: center;
+    height: 245px;
     margin-left: 122px;
-    margin-top: 250.66px;
+    margin-top: 100px;
+    width: 415px;
+    box-shadow: 0 6px 6px #00000029;
+    border: 1px solid #707070;
+    border-radius: 33px;
+}
+
+form.register {
+    height: fit-content;
+}
+
+button {
+    background: transparent linear-gradient(180deg, #ffd5a0 0%, #aa8b62 0%, #723332 100%);box-shadow: 0 3px 6px #00000029;
+    border-radius: 19px;
+    width: 50%;
+    border: none;
+    color: white;
+    margin: 1em;
+    line-height: 2.5em;
+}
+
+input,
+textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 1em;
+    margin: 1em;
+    width: 50%;
+}
+
+.base-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+nav {
+    width: 20vw;
+    height: 100%;
+    background: linear-gradient(180deg, #ffd5a0 0%, #aa8b62 0%, #723332 100%); display: flex;
+}
+
+main {
+    width: 80vw;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+nav > img {
+    width: 50%;
+    margin: 2em auto;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 2em;
+}
+
+li i {
+    font-size: 5em;
+}
+
+.button {
+    border: 1px solid #FFFFFF;
+    border-radius: 1em;
+    margin-left: 1em;
+    text-align: center;
+    font-family: "SegoeUI-SemiboldItalic", Helvetica, Arial, serif;;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    padding: 0.2rem;
+    width: 85%;
+}
+
+ul {
+    list-style-type: none;
+    font: normal normal normal 20px/27px Segoe UI;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    height: 100%;
+    width: calc(100% - 40px);
     position: relative;
-    width: 515px;
-}
-
-.web1-login .path-1 {
-    background-color: transparent;
-    height: calc(100.00% + 18px);
-    left: -9px;
-    position: absolute;
-    top: -3px;
-    width: calc(100.00% + 18px);
-}
-
-.web1-login .line-1 {
-    background-color: transparent;
-    height: 1px;
-    left: 40px;
-    position: absolute;
-    top: 32.42%;
-    width: calc(100.00% - 83px);
-}
-
-.web1-login .line-2 {
-    background-color: transparent;
-    bottom: 44.69%;
-    height: 1px;
-    left: 40px;
-    position: absolute;
-    width: calc(100.00% - 83px);
-}
-
-.web1-login .login-button {
-    background: linear-gradient(180deg, #aa8b62 0%, #723332 100%);
-    background-color: transparent;
-    border-radius: 25px;
-    bottom: 36px;
-    box-shadow: 0px 6px 6px rgba(0,0,0,0.161);;
-    height: 57px;
-    position: absolute;
-    right: 43px;
-    width: 199px;
-}
-
-.web1-login .email-input {
-    background-color: transparent;
-    border: none;
-    height: 29px;
-    left: 46px;
-    letter-spacing: 0.00px;
-    line-height: 20px;
+    margin: 0 auto;
     padding: 0;
-    position: absolute;
-    text-align: left;
-    top: calc(24.09% - 7px);
-    white-space: nowrap;
-    width: 50px;
-}
-.web1-login .email-input::placeholder {
-    color: rgba(112,112,112,0.6);
 }
 
-.web1-login .password-input {
-    background-color: transparent;
-    border: none;
-    height: 29px;
-    left: 46px;
-    letter-spacing: 0.00px;
-    line-height: 20px;
-    padding: 0;
-    position: absolute;
+li {
     text-align: left;
-    top: calc(49.36% - 14px);
-    white-space: nowrap;
-    width: 86px;
-}
-.web1-login .password-input::placeholder {
-    color: rgba(112,112,112,0.6);
+    color: white;
+    margin-bottom: 1em;
 }
 
-.web1-login .register-button {
-    background: linear-gradient(180deg, #aa8b62 0%, #723332 100%);
-    background-color: transparent;
-    border-radius: 25px;
-    bottom: 36px;
-    box-shadow: 0px 6px 6px rgba(0,0,0,0.161);;
-    height: 57px;
+li:last-child {
     position: absolute;
-    right: 276px;
-    width: 199px;
-  }
+    bottom: 0;
+    width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(180deg, #ffd5a0 0%, #aa8b62 0%, #723332 100%);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    border-bottom: 1px solid gray;
+}
+
+.add-project {
+    border-radius: 1.5em;
+    letter-spacing: 0.6em;
+    margin-left: 80%;
+    font-family: "SegoeUI-SemiboldItalic", Helvetica, Arial, serif;;
+    text-align: center;
+    width: 20%;
+}
+
+.add-project > i {
+    padding: 1em 1em;
+}
+.no-valid {
+    border: 3px solid red;
+    border-radius: 1em;
+    box-shadow: 0 0 0.2em red;
+    outline: none;
+}
+
+main > .project-container {
+    background: white;
+    margin-right: 1.5em;
+    margin-bottom: 0.7em;
+    height: 100%;
+}
