@@ -66,6 +66,19 @@ button {
     line-height: 2.5em;
 }
 
+.selected{
+    box-shadow: 0 3px 6px #00000029;
+    border: 1px solid #FFFFFF;
+    border-radius: 1em;
+    margin-left: 1em;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    padding: 0.2rem;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
 input,
 textarea {
     background-color: transparent;
@@ -155,19 +168,6 @@ li i {
     width: 70%;
 }
 
-.selected{
-    box-shadow: 0 3px 6px #00000029;
-    border: 1px solid #FFFFFF;
-    border-radius: 1em;
-    margin-left: 1em;
-    text-align: center;
-    letter-spacing: 1px;
-    color: #FFFFFF;
-    padding: 0.2rem;
-    width: 70%;
-    background: rgba(255, 255, 255, 0.2);
-}
-
 ul {
     list-style-type: none;
     font: normal normal normal 20px/27px seguisbi;
@@ -196,7 +196,7 @@ li:last-child {
     color: #5F1911;
 }
 
-.projects {
+.allRecipes {
     background: white;
 }
 
