@@ -25,7 +25,7 @@ section {
 }
 
 .allRecipes > div {
-    height: 420px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
