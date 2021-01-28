@@ -66,19 +66,6 @@ button {
     line-height: 2.5em;
 }
 
-.selected{
-    box-shadow: 0 3px 6px #00000029;
-    border: 1px solid #FFFFFF;
-    border-radius: 1em;
-    margin-left: 1em;
-    text-align: center;
-    letter-spacing: 1px;
-    color: #FFFFFF;
-    padding: 0.2rem;
-    width: 70%;
-    background: rgba(255, 255, 255, 0.2);
-}
-
 input,
 textarea {
     background-color: transparent;
@@ -154,6 +141,7 @@ a {
 
 li i {
     font-size: 1.5em;
+    vertical-align: middle;
 }
 
 .button {
@@ -168,13 +156,26 @@ li i {
     width: 70%;
 }
 
+.selected{
+    box-shadow: 0 3px 6px #00000029;
+    border: 1px solid #FFFFFF;
+    border-radius: 1em;
+    margin-left: 1em;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    padding: 0.2rem;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
 ul {
     list-style-type: none;
-    font: normal normal normal 20px/27px seguisbi;
+    font: normal normal normal 20px/20px seguisbi;
     letter-spacing: 1px;
     color: #FFFFFF;
     height: 100%;
-    width: calc(100% - 30px);
+    width: calc(100% - 40px);
     margin: 0 auto;
     padding: 0;
     position: relative;
@@ -182,12 +183,13 @@ ul {
 
 li {
     text-align: left;
-    margin-bottom: 1em;
+    margin-left: auto;
+    margin-top: 0.5em;
 }
 
 li:last-child {
     position: absolute;
-    bottom: 0;
+    bottom: 0.5em;
     width: 100%;
 }
 
