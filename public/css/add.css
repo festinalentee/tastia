@@ -1,0 +1,122 @@
+.instructions {
+    grid-area: instructions;
+    background-color: #723332;
+}
+
+.photo {
+    grid-area: photo;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.details {
+    grid-area: details;
+    background-color: #723332;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredients {
+    grid-area: ingredients;
+    background-color: #AA8B62;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    background-color: #FFFFFF;
+    padding: 1em;
+    overflow: auto;
+    height: 100%;
+    grid-template-areas:
+    "instructions instructions photo details"
+    "instructions instructions ingredients ingredients"
+    "instructions instructions ingredients ingredients"
+    "instructions instructions ingredients ingredients";
+}
+
+.grid-container > div {
+    text-align: center;
+    height: 100%;
+    font-size: 20px;
+    border: 1px solid #707070;
+    border-radius: 1em;
+}
+
+h1{
+    color: white;
+    height: 50%;
+    font: bold italic normal 30px/30px seguisbi;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+input, textarea {
+    background-color: transparent;
+    border: none;
+}
+
+textarea {
+    width: 90%;
+    padding: 0;
+    margin: 1em;
+}
+
+.instructions > form > textarea,
+.ingredients > form > textarea {
+    font: normal normal normal 20px/20px seguisbi;
+    color: #FFFFFF;
+    line-height: 1.3em;
+    text-align: justify;
+}
+
+.ingredients > form > textarea {
+    text-align: center;
+}
+
+input {
+    text-align: center;
+    padding: 0;
+}
+
+.fas.fa-camera {
+    font-size: 3em;
+}
+
+.details > form > input {
+    padding: 0.8em;
+    font: normal normal normal 18px/18px seguisbi;
+    color: #FFFFFF;
+}
+
+.title > form > input {
+    width: 100%;
+    font: bold italic normal 20px/20px seguisbi;
+    font-size: 2em;
+    color: #FFFFFF;
+    margin-left: 1.6em;
+}
+
+button {
+    box-shadow: 0 3px 6px #00000029;
+    background: transparent;
+    letter-spacing: 0.1em;
+    font: normal normal normal 12px/12px Segoe UI;
+    color: #FFFFFF;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #FFFFFF;
+    border-radius: 2em;
+    padding: 1em 3.7em;
+}
+
+
+
