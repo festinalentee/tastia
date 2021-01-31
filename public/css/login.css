@@ -1,0 +1,20 @@
+button {
+    background: transparent linear-gradient(180deg, #ffd5a0 0%, #aa8b62 0%, #723332 100%);
+    box-shadow: 0 3px 6px #00000029;
+    border-radius: 19px;
+    width: 50%;
+    border: none;
+    color: white;
+    margin: 1em;
+    line-height: 2.5em;
+}
+
+input,
+textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 1em;
+    margin: 1em;
+    width: 50%;
+}
