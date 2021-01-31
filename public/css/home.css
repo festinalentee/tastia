@@ -30,3 +30,21 @@ section {
     flex-direction: column;
     justify-content: space-between;
 }
+
+.add-recipe {
+    width: 15%;
+}
+
+.add-recipe-button {
+    box-shadow: 0 3px 6px #00000029;
+    color: white;
+    letter-spacing: 0.1em;
+    font: normal normal normal 12px/12px Segoe UI;
+    text-align: center;
+    width: 100%;
+    height: 30%;
+    border: 1px solid #FFFFFF;
+    border-radius: 2em;
+    padding: 1em 0;
+}
+
