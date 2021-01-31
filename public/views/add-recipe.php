@@ -44,29 +44,21 @@
         </ul>
     </nav>
     <main>
-        <header>
-            <div class="title">
-                <form action="addRecipe" method="POST" enctype="multipart/form-data">
+        <form action="addRecipe" method="POST" enctype="multipart/form-data">
+            <header>
+                <div class="title inputs">
                     <input name="title" type="text" placeholder="Title">
-                </form>
-            </div>
-            <div class="save">
-                <form action="addRecipe" method="POST" enctype="multipart/form-data">
+                </div>
+                <div class="save">
                     <button type="submit"><i class="fas fa-save"></i> Save recipe</button>
-                </form>
-            </div>
-        </header>
-        <section class="grid-container">
-
-            <div class="instructions">
-                <form action="addRecipe" method="POST" enctype="multipart/form-data">
+                </div>
+            </header>
+            <section class="grid-container">
+                <div class="instructions inputs">
                     <h1>Instructions</h1>
                     <textarea name="instructions" rows=23 placeholder="Write instructions..."></textarea>
-                </form>
-            </div>
-
-            <div class="photo">
-                <form action="addRecipe" method="POST" enctype="multipart/form-data">
+                </div>
+                <div class="photo">
                     <div class="messages">
                         <?php
                         if(isset($messages)){
@@ -78,23 +70,19 @@
                     </div>
                     <i class="fas fa-camera"></i>
                     <input type="file" name="file"/><br/>
-                </form>
-            </div>
-            <div class="details">
-                <form action="addRecipe" method="POST" enctype="multipart/form-data">
+                </div>
+                <div class="details inputs">
                     <input name="category" type="text" placeholder="category">
                     <input name="time" type="text" placeholder="time">
                     <input name="servings" type="text" placeholder="servings">
                     <input name="difficulty" type="text" placeholder="difficulty">
-                </form>
-            </div>
-            <div class="ingredients">
-                <form action="addRecipe" method="POST" enctype="multipart/form-data">
+                </div>
+                <div class="ingredients inputs">
                     <h1>Ingredients</h1>
                     <textarea name="ingredients" rows=14 placeholder="Write ingredients..."></textarea>
-                </form>
-            </div>
-        </section>
+                </div>
+            </section>
+        </form>
     </main>
 </div>
 </body>

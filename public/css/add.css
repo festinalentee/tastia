@@ -7,6 +7,7 @@
     grid-area: photo;
     background-color: #FFFFFF;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -15,7 +16,7 @@
     grid-area: details;
     background-color: #723332;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -32,7 +33,9 @@
     background-color: #FFFFFF;
     padding: 1em;
     overflow: auto;
-    height: 100%;
+    position: absolute;
+    width: 78%;
+    height: 87%;
     grid-template-areas:
     "instructions instructions photo details"
     "instructions instructions ingredients ingredients"
@@ -41,21 +44,18 @@
 }
 
 .grid-container > div {
+    position: relative;
     text-align: center;
-    height: 100%;
     font-size: 20px;
     border: 1px solid #707070;
     border-radius: 1em;
 }
 
-h1{
+h1 {
     color: white;
-    height: 50%;
     font: bold italic normal 30px/30px seguisbi;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
     letter-spacing: 1px;
 }
 
@@ -67,18 +67,17 @@ input, textarea {
 textarea {
     width: 90%;
     padding: 0;
-    margin: 1em;
 }
 
-.instructions > form > textarea,
-.ingredients > form > textarea {
+.instructions > textarea,
+.ingredients > textarea {
     font: normal normal normal 20px/20px seguisbi;
     color: #FFFFFF;
     line-height: 1.3em;
     text-align: justify;
 }
 
-.ingredients > form > textarea {
+.ingredients > textarea {
     text-align: center;
 }
 
@@ -91,13 +90,14 @@ input {
     font-size: 3em;
 }
 
-.details > form > input {
-    padding: 0.8em;
+.details.inputs > input {
     font: normal normal normal 18px/18px seguisbi;
     color: #FFFFFF;
+    padding: 1em;
+
 }
 
-.title > form > input {
+.title > input {
     width: 100%;
     font: bold italic normal 20px/20px seguisbi;
     font-size: 2em;
@@ -117,6 +117,3 @@ button {
     border-radius: 2em;
     padding: 1em 3.7em;
 }
-
-
-
