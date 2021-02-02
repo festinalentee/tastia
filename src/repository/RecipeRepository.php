@@ -3,11 +3,10 @@
 require_once 'Repository.php';
 require_once __DIR__ . '/../models/Recipe.php';
 
-class RecipeRepository extends Repository
-{
+class RecipeRepository extends Repository {
 
-    public function getRecipe(int $id): ?Recipe
-    {
+    public function getRecipe(int $id): ?Recipe {
+
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM public.recipes WHERE id = :id
         ');
@@ -32,8 +31,8 @@ class RecipeRepository extends Repository
         );
     }
 
-    public function addRecipe(Recipe $recipe): void
-    {
+    public function addRecipe(Recipe $recipe): void {
+
         $stmt = $this->database->connect()->prepare('
             INSERT INTO recipes (title, instructions, ingredients, category, preparation_time, servings, difficulty, image)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -54,8 +53,8 @@ class RecipeRepository extends Repository
         ]);
     }
 
-    public function getRecipes(): array
-    {
+    public function getRecipes(): array {
+
         $result = [];
 
         $stmt = $this->database->connect()->prepare('
@@ -80,12 +79,12 @@ class RecipeRepository extends Repository
         return $result;
     }
 
-    public function getProjectByTitle(string $searchString)
-    {
+    public function getRecipeByTitle(string $searchString) {
+
         $searchString = '%' . strtolower($searchString) . '%';
 
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM projects WHERE LOWER(title) LIKE :search OR LOWER(description) LIKE :search
+            SELECT * FROM recipes WHERE LOWER(title) LIKE :search
         ');
         $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
         $stmt->execute();

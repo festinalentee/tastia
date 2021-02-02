@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/recipes.css">
     <script src="https://kit.fontawesome.com/28fe1185ec.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/public/js/search.js" defer></script>
     <title>Tastia</title>
 </head>
 
@@ -46,9 +47,7 @@
         <main>
             <header>
                 <div class="search-bar">
-                    <form>
                         <input placeholder="search recipe">
-                    </form>
                 </div>
                 <div class="add-recipe">
                     <a href="#" class="add-recipe-button"><i class="fas fa-plus"></i> Add recipe</a>
@@ -67,3 +66,12 @@
         </main>
     </div>
 </body>
+
+<template id="recipe-template">
+    <div id="recipe-1">
+        <img src="">
+        <div>
+            <h2>title</h2>
+        </div>
+    </div>
+</template>

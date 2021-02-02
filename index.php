@@ -10,5 +10,6 @@ Routing::get('recipes', 'RecipeController');
 Routing::post('login', 'SecurityController');
 Routing::post('addRecipe', 'RecipeController');
 Routing::post('register', 'SecurityController');
+Routing::post('search', 'RecipeController');
 
 Routing::run($path);
