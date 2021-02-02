@@ -10,20 +10,23 @@
 
 <body>
     <div class="container">
-        <img class="logo" src="public/img/logooo@1x.png">
-            <form class="login" action="login" method="POST">
-                <div class="messages">
-                    <?php
-                    if(isset($messages)){
-                        foreach($messages as $message) {
-                            echo $message;
+        <div class="logo">
+            <img src="public/img/logooo@1x.png">
+        </div>
+        <div class="login-container">
+                <form class="login" action="login" method="POST">
+                    <div class="messages">
+                        <?php
+                        if(isset($messages)){
+                            foreach($messages as $message) {
+                                echo $message;
+                            }
                         }
-                    }
-                    ?>
-                </div>
-                <input name="email" type="email" placeholder="email@email.com" required>
-                <input name="password" type="password" placeholder="password" required>
-                <button type="submit">LOGIN</button>
-            </form>
+                        ?>
+                    </div>
+                    <input name="email" type="text" placeholder="email@email.com" required>
+                    <input name="password" type="password" placeholder="password" required>
+                    <button type="submit">LOGIN</button>
+                </form>
         </div>
 </body>
