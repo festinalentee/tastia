@@ -2,6 +2,7 @@
 
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/Recipe.php';
+require_once __DIR__.'/../repository/RecipeRepository.php';
 
 class RecipeController extends AppController {
 
@@ -10,6 +11,19 @@ class RecipeController extends AppController {
     const UPLOAD_DIRECTORY = '/../public/uploads/';
 
     private $message = [];
+    private $recipeRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->recipeRepository = new RecipeRepository();
+    }
+
+    public function recipes()
+    {
+        $recipes = $this->recipeRepository->getRecipes();
+        $this->render('recipes', ['recipes' => $recipes]);
+    }
 
     public function addRecipe() {
 
@@ -21,11 +35,15 @@ class RecipeController extends AppController {
             );
 
             $recipe = new Recipe(
-                $_POST['title'], $_POST['instructions'], $_POST['ingredients'], $_FILES['file']['name'],
-                $_POST['category'], $_POST['time'], $_POST['servings'], $_POST['difficulty']
+                $_POST['title'], $_POST['instructions'], $_POST['ingredients'], $_POST['category'],
+                $_POST['preparation_time'], $_POST['servings'], $_POST['difficulty'], $_FILES['file']['name'],
             );
+            $this->recipeRepository->addRecipe($recipe);
 
-            return $this->render('home', ['message' => $this->message, 'recipe' => $recipe]);
+            return $this->render('recipes', [
+                'recipes' => $this->recipeRepository->getRecipes(),
+                'message' => $this->message
+            ]);
         }
         return $this->render('add-recipe', ['message' => $this->message]);
     }

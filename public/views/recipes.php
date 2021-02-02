@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="public/css/home.css">
+    <link rel="stylesheet" type="text/css" href="public/css/recipes.css">
     <script src="https://kit.fontawesome.com/28fe1185ec.js" crossorigin="anonymous"></script>
-    <title>Home</title>
+    <title>Tastia</title>
 </head>
 
 <body>
@@ -55,12 +55,14 @@
                 </div>
             </header>
             <section class="allRecipes">
-                <div id="recipe-1">
-                    <img src="public/uploads/<?= $recipe->getImage() ?>">
-                    <div>
-                        <h2><?= $recipe->getTitle() ?></h2>
+                <?php foreach ($recipes as $recipe): ?>
+                    <div id="recipe-1">
+                        <img src="public/uploads/<?= $recipe->getImage() ?>">
+                        <div>
+                            <h2><?= $recipe->getTitle() ?></h2>
+                        </div>
                     </div>
-                </div> 
+                <?php endforeach; ?>
             </section>
         </main>
     </div>
