@@ -73,7 +73,7 @@
                 </div>
                 <div class="details inputs">
                     <input name="category" type="text" placeholder="category">
-                    <input name="time" type="text" placeholder="time">
+                    <input name="preparation_time" type="text" placeholder="preparation_time">
                     <input name="servings" type="text" placeholder="servings">
                     <input name="difficulty" type="text" placeholder="difficulty">
                 </div>

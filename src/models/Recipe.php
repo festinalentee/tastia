@@ -5,22 +5,22 @@ class Recipe{
     private $title;
     private $instructions;
     private $ingredients;
-    private $image;
     private $category;
-    private $time;
+    private $preparation_time;
     private $servings;
     private $difficulty;
+    private $image;
 
-    public function __construct($title, $instructions, $ingredients, $image, $category, $time, $servings, $difficulty)
+    public function __construct($title, $instructions, $ingredients, $category, $preparation_time, $servings, $difficulty, $image)
     {
         $this->title = $title;
         $this->instructions = $instructions;
         $this->ingredients = $ingredients;
-        $this->image = $image;
         $this->category = $category;
-        $this->time = $time;
+        $this->preparation_time = $preparation_time;
         $this->servings = $servings;
         $this->difficulty = $difficulty;
+        $this->image = $image;
     }
 
     public function getTitle(): string
@@ -73,14 +73,14 @@ class Recipe{
         $this->category = $category;
     }
 
-    public function getTime()
+    public function getPreparationTime()
     {
-        return $this->time;
+        return $this->preparation_time;
     }
 
-    public function setTime($time)
+    public function setPreparationTime($preparation_time): void
     {
-        $this->time = $time;
+        $this->preparation_time = $preparation_time;
     }
 
     public function getServings()
