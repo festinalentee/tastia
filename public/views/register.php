@@ -25,12 +25,12 @@
                     }
                     ?>
                 </div>
-                <input name="email" type="text" placeholder="email@email.com">
-                <input name="password" type="password" placeholder="password">
-                <input name="confirmedPassword" type="password" placeholder="confirm password">
-                <input name="name" type="text" placeholder="name">
-                <input name="surname" type="text" placeholder="surname">
-                <button type="submit">REGISTER</button>
+                <input name="email" type="text" placeholder="email@email.com" required>
+                <input name="password" type="password" placeholder="password" required>
+                <input name="confirmedPassword" type="password" placeholder="confirm password" required>
+                <input name="name" type="text" placeholder="name" required>
+                <input name="surname" type="text" placeholder="surname" required>
+                <button type="submit">SIGN UP</button>
             </form>
         </div>
     </div>
