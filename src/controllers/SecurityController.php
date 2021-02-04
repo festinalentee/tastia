@@ -22,7 +22,7 @@ class SecurityController extends AppController {
         }
 
         $email = $_POST['email'];
-        $password = md5($_POST['password']);
+        $password = sha1($_POST['password']);
         $user = $this->userRepository->getUser($email);
 
         if (!$user) {

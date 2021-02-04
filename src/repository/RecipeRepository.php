@@ -61,8 +61,9 @@ class RecipeRepository extends Repository {
         $searchString = '%' . strtolower($searchString) . '%';
 
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM recipes WHERE LOWER(title) LIKE :search
+            SELECT * FROM recipes WHERE id_users = :id_users AND LOWER(title) LIKE :search
         ');
+        $stmt->bindParam(':id_users', $_SESSION['id'],PDO::PARAM_INT);
         $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
         $stmt->execute();
 
