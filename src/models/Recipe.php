@@ -1,7 +1,8 @@
 <?php
 
 
-class Recipe{
+class Recipe {
+
     private $title;
     private $instructions;
     private $ingredients;
@@ -10,8 +11,10 @@ class Recipe{
     private $servings;
     private $difficulty;
     private $image;
+    private $id_users;
 
-    public function __construct($title, $instructions, $ingredients, $category, $preparation_time, $servings, $difficulty, $image)
+
+    public function __construct($title, $instructions, $ingredients, $category, $preparation_time, $servings, $difficulty, $image, $id_users)
     {
         $this->title = $title;
         $this->instructions = $instructions;
@@ -21,6 +24,7 @@ class Recipe{
         $this->servings = $servings;
         $this->difficulty = $difficulty;
         $this->image = $image;
+        $this->id_users = $id_users;
     }
 
     public function getTitle(): string
@@ -101,5 +105,15 @@ class Recipe{
     public function setDifficulty($difficulty)
     {
         $this->difficulty = $difficulty;
+    }
+
+    public function getIdUsers()
+    {
+        return $this->id_users;
+    }
+
+    public function setIdUsers($id_users): void
+    {
+        $this->id_users = $id_users;
     }
 }

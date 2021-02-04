@@ -3,6 +3,7 @@
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/Recipe.php';
 require_once __DIR__.'/../repository/RecipeRepository.php';
+require_once __DIR__ . '/../../Session.php';
 
 class RecipeController extends AppController {
 
@@ -10,8 +11,8 @@ class RecipeController extends AppController {
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
 
-    private $message = [];
-    private $recipeRepository;
+    private array $message = [];
+    private RecipeRepository $recipeRepository;
 
     public function __construct() {
 
@@ -22,7 +23,7 @@ class RecipeController extends AppController {
     public function recipes() {
 
         $recipes = $this->recipeRepository->getRecipes();
-        $this->render('recipes', ['recipes' => $recipes]);
+        return $this->render('recipes', ['recipes' => $recipes]);
     }
 
     public function addRecipe() {
@@ -34,16 +35,13 @@ class RecipeController extends AppController {
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
 
-            $recipe = new Recipe(
-                $_POST['title'], $_POST['instructions'], $_POST['ingredients'], $_POST['category'],
-                $_POST['preparation_time'], $_POST['servings'], $_POST['difficulty'], $_FILES['file']['name'],
-            );
+            $recipe = new Recipe($_POST['title'], $_POST['instructions'], $_POST['ingredients'],
+                $_POST['category'], $_POST['preparation_time'], $_POST['servings'],
+                $_POST['difficulty'], $_FILES['file']['name'], $_POST['id_users']);
+
             $this->recipeRepository->addRecipe($recipe);
 
-            return $this->render('recipes', [
-                'recipes' => $this->recipeRepository->getRecipes(),
-                'message' => $this->message
-            ]);
+            return $this->render('recipes', ['recipes' => $this->recipeRepository->getRecipes(), 'message' => $this->message]);
         }
         return $this->render('add-recipe', ['message' => $this->message]);
     }

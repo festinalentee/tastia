@@ -12,45 +12,29 @@ class RecipeRepository extends Repository {
         ');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-
         $recipe = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($recipe == false) {
-            return null;
+            throw new UnexpectedValueException('Recipe not found');
         }
 
-        return new Recipe(
-            $recipe ['title'],
-            $recipe ['instructions'],
-            $recipe ['ingredients'],
-            $recipe ['image'],
-            $recipe ['category'],
-            $recipe ['preparation_time'],
-            $recipe ['servings'],
-            $recipe ['difficulty'],
-        );
+        return new Recipe($recipe ['title'], $recipe ['instructions'], $recipe ['ingredients'],
+            $recipe ['category'], $recipe ['preparation_time'], $recipe ['servings'],
+            $recipe ['difficulty'], $recipe ['image'], $recipe ['id_users'] );
     }
 
     public function addRecipe(Recipe $recipe): void {
 
+        $id_users = $_SESSION['id'];
+
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO recipes (title, instructions, ingredients, category, preparation_time, servings, difficulty, image)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO recipes (title, instructions, ingredients, category, preparation_time, servings, difficulty, image, id_users)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ');
 
-        //TODO you should get this value from logged user session
-        //$id_users = 1;
-
-        $stmt->execute([
-            $recipe->getTitle(),
-            $recipe->getInstructions(),
-            $recipe->getIngredients(),
-            $recipe->getCategory(),
-            $recipe->getPreparationTime(),
-            $recipe->getServings(),
-            $recipe->getDifficulty(),
-            $recipe->getImage(),
-        ]);
+        $stmt->execute([$recipe->getTitle(), $recipe->getInstructions(), $recipe->getIngredients(),
+            $recipe->getCategory(), $recipe->getPreparationTime(), $recipe->getServings(),
+            $recipe->getDifficulty(), $recipe->getImage(), $id_users]);
     }
 
     public function getRecipes(): array {
@@ -58,24 +42,17 @@ class RecipeRepository extends Repository {
         $result = [];
 
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM recipes;
+            SELECT * FROM recipes WHERE id_users = :id_users;
         ');
+        $stmt->bindParam(':id_users', $_SESSION['id'],PDO::PARAM_INT);
         $stmt->execute();
         $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($recipes as $recipe) {
-            $result[] = new Recipe(
-                $recipe ['title'],
-                $recipe ['instructions'],
-                $recipe ['ingredients'],
-                $recipe ['category'],
-                $recipe ['preparation_time'],
-                $recipe ['servings'],
-                $recipe ['difficulty'],
-                $recipe ['image'],
-            );
+            $result[] = new Recipe($recipe ['title'], $recipe ['instructions'], $recipe ['ingredients'],
+                $recipe ['category'], $recipe ['preparation_time'], $recipe ['servings'],
+                $recipe ['difficulty'], $recipe ['image'], $recipe ['id_users']);
         }
-
         return $result;
     }
 
