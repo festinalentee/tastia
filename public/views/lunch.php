@@ -5,93 +5,73 @@
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/recipes.css">
     <script src="https://kit.fontawesome.com/28fe1185ec.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/public/js/search.js" defer></script>
     <title>Tastia</title>
 </head>
 
 <body>
-<div class="base-container">
-    <nav>
-        <img src="public/img/logooo@1x.png">
-        <ul>
-            <li>
-                <i class="fas fa-home"></i>
-                <a href="#" class="button">All recipes</a>
-            </li>
-            <li>
-                <i class="fas fa-coffee"></i>
-                <a href="#" class="button">Breakfast</a>
-            </li>
-            <li>
-                <i class="fas fa-apple-alt"></i>
-                <a href="#" class="selected">Lunch</a>
-            </li>
-            <li>
-                <i class="fas fa-fish"></i>
-                <a href="#" class="button">Dinner</a>
-            </li>
-            <li>
-                <i class="fas fa-ice-cream"></i>
-                <a href="#" class="button">Dessert</a>
-            </li>
-            <li>
-                <i class="fas fa-glass-martini-alt"></i>
-                <a href="#" class="button">Drink</a>
-            </li>
-            <li>
-                <i class="fas fa-sign-out-alt"></i>
-                <a href="#" class="button">Logout</a>
-            </li>
-        </ul>
-    </nav>
-    <main>
-        <header>
-            <div class="search-bar">
-                <form>
+    <div class="base-container">
+        <nav>
+            <img src="public/img/logooo@1x.png">
+            <ul>
+                <li>
+                    <i class="fas fa-home"></i>
+                    <a href="recipes" class="button">All recipes</a>
+                </li>
+                <li>
+                    <i class="fas fa-coffee"></i>
+                    <a href="breakfast" class="button">Breakfast</a>
+                </li>
+                <li>
+                    <i class="fas fa-apple-alt"></i>
+                    <a href="lunch" class="selected">Lunch</a>
+                </li>
+                <li>
+                    <i class="fas fa-fish"></i>
+                    <a href="dinner" class="button">Dinner</a>
+                </li>
+                <li>
+                    <i class="fas fa-ice-cream"></i>
+                    <a href="dessert" class="button">Dessert</a>
+                </li>
+                <li>
+                    <i class="fas fa-glass-martini-alt"></i>
+                    <a href="drink" class="button">Drink</a>
+                </li>
+                <li>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="login" class="button">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <header>
+                <div class="search-bar">
                     <input placeholder="search recipe">
-                </form>
-            </div>
-            <div class="add-recipe">
-                <i class="fas fa-plus"></i> Add a recipe
-            </div>
-        </header>
-        <section class="allRecipes">
-            <div id="recipe-1">
-                <img src="public/img/image-3@1x.png">
-                <div>
-                    <h2>Salad</h2>
                 </div>
-            </div>
-            <div id="recipe-2">
-                <img src="public/img/image-4@1x.png">
-                <div>
-                    <h2>Smoothie</h2>
+                <div class="add-recipe">
+                    <a href="addRecipe" class="add-recipe-button"><i class="fas fa-plus"></i> Add recipe</a>
                 </div>
-            </div>
-            <div id="recipe-3">
-                <img src="public/img/image-14@1x.png">
-                <div>
-                    <h2>Chicken</h2>
-                </div>
-            </div>
-            <div id="recipe-4">
-                <img src="public/img/image-15@1x.png">
-                <div>
-                    <h2>Spaghetti</h2>
-                </div>
-            </div>
-            <div id="recipe-5">
-                <img src="public/img/image-1@1x.png">
-                <div>
-                    <h2>Pasta</h2>
-                </div>
-            </div>
-            <div id="recipe-6">
-                <img src="public/img/image-2@1x.png">
-                <div>
-                    <h2>Sushi</h2>
-                </div>
-            </div>
-        </section>
-    </main>
-</div>
+            </header>
+            <section class="allRecipes">
+                <?php foreach ($lunch as $recipe): ?>
+                    <div id="recipe-1">
+                        <img src="public/uploads/<?= $recipe->getImage() ?>">
+                        <div>
+                            <h2><?= $recipe->getTitle() ?></h2>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </section>
+        </main>
+    </div>
 </body>
+
+<template id="recipe-template">
+    <div id="recipe-1">
+        <img src="">
+        <div>
+            <h2>title</h2>
+        </div>
+    </div>
+</template>

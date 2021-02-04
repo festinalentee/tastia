@@ -69,4 +69,24 @@ class RecipeRepository extends Repository {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getRecipeByCategory(string $category): array {
+
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM recipes WHERE id_users = :id_users AND LOWER(category) LIKE :category
+        ');
+        $stmt->bindParam(':id_users', $_SESSION['id'],PDO::PARAM_INT);
+        $stmt->bindParam(':category', $category,PDO::PARAM_INT);
+        $stmt->execute();
+        $breakfasts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($breakfasts as $breakfast) {
+            $result[] = new Recipe($breakfast ['title'], $breakfast ['instructions'], $breakfast ['ingredients'],
+                $breakfast ['category'], $breakfast ['preparation_time'], $breakfast ['servings'],
+                $breakfast ['difficulty'], $breakfast ['image'], $breakfast ['id_users']);
+        }
+        return $result;
+    }
 }

@@ -57,10 +57,16 @@ class SecurityController extends AppController {
             return $this->render('register', ['messages' => ['Please provide proper password']]);
         }
 
-        $user = new User($email, md5($password), $name, $surname, $id);
+        $user = new User($email, sha1($password), $name, $surname, $id);
         $this->userRepository->addUser($user);
         $_SESSION['id'] = $user->getId();
 
         return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);
+    }
+
+    public function logout() {
+
+        session_unset();
+        return $this->render('login');
     }
 }

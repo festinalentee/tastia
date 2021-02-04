@@ -15,31 +15,31 @@
         <ul>
             <li>
                 <i class="fas fa-home"></i>
-                <a href="#" class="button">All recipes</a>
+                <a href="recipes" class="button">All recipes</a>
             </li>
             <li>
                 <i class="fas fa-coffee"></i>
-                <a href="#" class="button">Breakfast</a>
+                <a href="breakfast" class="button">Breakfast</a>
             </li>
             <li>
                 <i class="fas fa-apple-alt"></i>
-                <a href="#" class="button">Lunch</a>
+                <a href="lunch" class="button">Lunch</a>
             </li>
             <li>
                 <i class="fas fa-fish"></i>
-                <a href="#" class="button">Dinner</a>
+                <a href="dinner" class="button">Dinner</a>
             </li>
             <li>
                 <i class="fas fa-ice-cream"></i>
-                <a href="#" class="button">Dessert</a>
+                <a href="dessert" class="button">Dessert</a>
             </li>
             <li>
                 <i class="fas fa-glass-martini-alt"></i>
-                <a href="#" class="button">Drink</a>
+                <a href="drink" class="button">Drink</a>
             </li>
             <li>
                 <i class="fas fa-sign-out-alt"></i>
-                <a href="#" class="button">Logout</a>
+                <a href="login" class="button">Logout</a>
             </li>
         </ul>
     </nav>
@@ -72,7 +72,14 @@
                     <input type="file" name="file"/><br/>
                 </div>
                 <div class="details inputs">
-                    <input name="category" type="text" placeholder="category">
+                    <select id="category" class="category-selectbox" name="category">
+                        <option value="" disabled selected>category</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Drink">Drink</option>
+                    </select>
                     <input name="preparation_time" type="text" placeholder="preparation_time">
                     <input name="servings" type="text" placeholder="servings">
                     <input name="difficulty" type="text" placeholder="difficulty">
