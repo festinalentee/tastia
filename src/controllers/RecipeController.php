@@ -34,17 +34,15 @@ class RecipeController extends AppController {
 
         Session::sessionVerification();
         if ($this->isPost()) {
-            if(is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
-
+            if (is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
                 $this->moveUploadedFile();
-                $recipe = new Recipe($_POST['title'], $_POST['instructions'], $_POST['ingredients'],
-                    $_POST['category'], $_POST['preparation_time'], $_POST['servings'],
-                    $_POST['difficulty'], $_FILES['file']['name'], $_POST['id_users']);
-                $this->recipeRepository->addRecipe($recipe);
-
-                return $this->render('recipes', ['recipes' => $this->recipeRepository->getRecipes(), 'messages' => $this->message]);
+                $this->addNewRecipe($_FILES['file']['name']);
             }
-            return $this->render('add-recipe', ['messages' => ["Please upload file!"]]);
+            if (!is_uploaded_file($_FILES['file']['tmp_name'])) {
+                $image = $this->recipeRepository->getDefaultImage(13);
+                $this->addNewRecipe($image);
+            }
+            return $this->render('recipes', ['recipes' => $this->recipeRepository->getRecipes(), 'messages' => $this->message]);
         }
         return $this->render('add-recipe', ['messages' => $this->message]);
     }
@@ -55,6 +53,14 @@ class RecipeController extends AppController {
             $_FILES['file']['tmp_name'],
             dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
         );
+    }
+
+    private function addNewRecipe($image) {
+
+        $recipe = new Recipe($_POST['title'], $_POST['instructions'], $_POST['ingredients'],
+            $_POST['category'], $_POST['preparation_time'], $_POST['servings'],
+            $_POST['difficulty'], $image, $_POST['id_users']);
+        $this->recipeRepository->addRecipe($recipe);
     }
 
     public function search() {
@@ -76,7 +82,6 @@ class RecipeController extends AppController {
 
         Session::sessionVerification();
         if (isset($_POST['update-button'])) {
-
             return $this->recipeAfterChanges();
         }
         if (isset($_POST['recipe-id'])) {
@@ -97,8 +102,8 @@ class RecipeController extends AppController {
 
         Session::sessionVerification();
         if (isset($_POST['update-recipe'])) {
-
-            return $this->render('modify-recipe', ['recipe' => $this->recipeRepository->getRecipeById($_POST['update-recipe'])]);
+            $recipe = $this->recipeRepository->getRecipeById($_POST['update-recipe']);
+            return $this->render('modify-recipe', ['recipe' => $recipe]);
         }
     }
 
@@ -108,17 +113,22 @@ class RecipeController extends AppController {
 
         if (is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
             $this->moveUploadedFile();
+            $this->updateRecipe($_FILES['file']['name']);
         }
-
-        $this->recipeRepository->modifyRecipe($_POST['title'], $_POST['instructions'], $_POST['ingredients'],
-                $_POST['category'], $_POST['preparation_time'], $_POST['servings'],
-                $_POST['difficulty'], $_FILES['file']['name'], $id);
-
+        else {
+            $this->updateRecipe();
+        }
         return $this->render('recipe', ['recipe' => $this->recipeRepository->getRecipeById($id)]);
     }
 
-    public function deleteRecipe() {
+    private function updateRecipe($image = null) {
 
+        $this->recipeRepository->modifyRecipe($_POST['title'], $_POST['instructions'], $_POST['ingredients'],
+            $_POST['category'], $_POST['preparation_time'], $_POST['servings'],
+            $_POST['difficulty'], $_POST['update-button'], $image);
+    }
+
+    public function deleteRecipe() {
         $this->recipeRepository->deleteRecipeById($_POST["delete-recipe"]);
     }
 

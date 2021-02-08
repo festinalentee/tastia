@@ -40,6 +40,17 @@ class RecipeRepository extends Repository {
             $recipe->getDifficulty(), $recipe->getImage(), $id_users]);
     }
 
+    public function getDefaultImage(int $id): string {
+
+        $stmt = $this->database->connect()->prepare('
+        SELECT image FROM recipes WHERE id = :id
+        ');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $image = $stmt->fetch(PDO::PARAM_STR);
+        return $image['image'];
+    }
+
     public function getRecipes(): array {
 
         $result = [];
@@ -97,12 +108,19 @@ class RecipeRepository extends Repository {
         return $result;
     }
 
-    public function modifyRecipe($title, $instructions, $ingredients, $category, $preparation_time, $servings, $difficulty, $image, $id): void {
+    public function modifyRecipe($title, $instructions, $ingredients, $category, $preparation_time, $servings, $difficulty, $id, $image = null): void {
 
-        $stmt = $this->database->connect()->prepare('
-        UPDATE recipes SET title = :title, instructions = :instructions, ingredients = :ingredients, category = :category, preparation_time = :preparation_time,
-                servings = :servings, difficulty = :difficulty, image = :image WHERE id = :id 
-        ');
+        if($image != null){
+            $stmt = $this->database->connect()->prepare('
+                UPDATE recipes SET title = :title, instructions = :instructions, ingredients = :ingredients, category = :category, 
+                    preparation_time = :preparation_time, servings = :servings, difficulty = :difficulty, image = :image WHERE id = :id ');
+            $stmt->bindParam(':image', $image);
+        }
+        else {
+            $stmt = $this->database->connect()->prepare('
+                UPDATE recipes SET title = :title, instructions = :instructions, ingredients = :ingredients, category = :category, 
+                preparation_time = :preparation_time, servings = :servings, difficulty = :difficulty WHERE id = :id ');
+        }
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':instructions', $instructions);
@@ -111,7 +129,6 @@ class RecipeRepository extends Repository {
         $stmt->bindParam(':preparation_time', $preparation_time);
         $stmt->bindParam(':servings', $servings);
         $stmt->bindParam(':difficulty', $difficulty);
-        $stmt->bindParam(':image', $image);
 
         $stmt->execute();
     }

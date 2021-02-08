@@ -42,7 +42,7 @@
                 </div>
                 <div class="details inputs">
                     <select id="category" class="category-selectbox" name="category">
-                        <option value="" disabled selected><?= $recipe->getCategory() ?></option>
+                        <option value="" disabled selected>Please select category</option>
                         <option value="Breakfast">Breakfast</option>
                         <option value="Lunch">Lunch</option>
                         <option value="Dinner">Dinner</option>
