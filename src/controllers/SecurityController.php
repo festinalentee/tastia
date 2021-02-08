@@ -20,24 +20,29 @@ class SecurityController extends AppController {
         if (!$this->isPost()) {
             return $this->render('login');
         }
-
-        $email = $_POST['email'];
-        $password = sha1($_POST['password']);
-        $user = $this->userRepository->getUser($email);
-
-        if (!$user) {
-            return $this->render('login', ['messages' => ['User not found!']]);
+        try {
+            $user = $this->userRepository->getUser($_POST['email']);
+        } catch (UnexpectedValueException $e) {
+            return $this->render('login', ['messages' => [$e->getMessage()]]);
         }
-        if ($user->getEmail() !== $email) {
-            return $this->render('login', ['messages' => ['User with this email not exist!']]);
-        }
-        if ($user->getPassword() !== $password) {
-            return $this->render('login', ['messages' => ['Wrong password!']]);
-        }
+        $this->validateLogin($user);
 
         $_SESSION['id'] = $user->getId();
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/recipes");
+    }
+
+    private function validateLogin($user) {
+
+        if (!$user) {
+            return $this->render('login', ['messages' => ['User not found!']]);
+        }
+        if ($user->getEmail() !== $_POST['email']) {
+            return $this->render('login', ['messages' => ['User with this email not exist!']]);
+        }
+        if ($user->getPassword() !== sha1($_POST['password'])) {
+            return $this->render('login', ['messages' => ['Wrong password!']]);
+        }
     }
 
     public function register() {
@@ -45,23 +50,49 @@ class SecurityController extends AppController {
         if (!$this->isPost()) {
             return $this->render('register');
         }
+        if($this->validateRegister()) {
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $confirmedPassword = $_POST['confirmedPassword'];
-        $name = $_POST['name'];
-        $surname = $_POST['surname'];
-        $id = $_POST['id'];
+            $user = new User($_POST['email'], sha1($_POST['password']), $_POST['name'], $_POST['surname'], $_POST['id']);
+            $this->userRepository->addUser($user);
+            $_SESSION['id'] = $user->getId();
 
-        if ($password !== $confirmedPassword) {
-            return $this->render('register', ['messages' => ['Please provide proper password']]);
+            return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);
         }
+    }
 
-        $user = new User($email, sha1($password), $name, $surname, $id);
-        $this->userRepository->addUser($user);
-        $_SESSION['id'] = $user->getId();
+    private function validateRegister(): bool {
 
-        return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);
+        if ($this->userRepository->isEmailOccupied($_POST['email'])) {
+            $this->render('register', ['messages' => ['User with this email already exists!']]);
+            return false;
+        }
+        elseif (!preg_match('/\S+@\S+\.\S+/', $_POST['email'])) {
+            $this->render('register', ['messages' => ['Please provide proper email!']]);
+            return false;
+        }
+        elseif (!$this->validatePasswordStrength()){
+            return false;
+        }
+        elseif ($_POST['password'] !== $_POST['confirmedPassword']) {
+            $this->render('register', ['messages' => ['Please provide the same password!']]);
+            return false;
+        }
+        return true;
+    }
+
+    private function validatePasswordStrength(): bool{
+
+        $upper_letter = preg_match('@[A-Z]@', $_POST['password']);
+        $lower_letters = preg_match('@[a-z]@', $_POST['password']);
+        $number = preg_match('@[0-9]@', $_POST['password']);
+        $special_character = preg_match('@[^\w]@', $_POST['password']);
+
+        if(!$upper_letter || !$lower_letters || !$number || !$special_character || strlen($_POST['password']) < 8) {
+            $this->render('register', ['messages' => ['Your password needs to be at least 8 characters, 
+                include both lower and upper case letters, number and special character.']]);
+            return false;
+        }
+        return true;
     }
 
     public function logout() {

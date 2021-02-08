@@ -53,4 +53,17 @@ class UserRepository extends Repository {
 
         return $data['id'];
     }
+
+    public function isEmailOccupied(string $email): bool{
+
+        $stmt = $this->database->connect()->prepare('
+        SELECT email FROM users WHERE email = :email');
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        if ($stmt->fetch(PDO::FETCH_ASSOC)) {
+            return true;
+        }
+        return false;
+    }
 }
