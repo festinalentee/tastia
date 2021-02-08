@@ -1,6 +1,6 @@
 <?php
 
-require_once "config.php";
+//require_once "config.php";
 
 class Database {
 
@@ -9,12 +9,20 @@ class Database {
     private $host;
     private $database;
 
-    public function __construct()
+    /*public function __construct()
     {
         $this->username = USERNAME;
         $this->password = PASSWORD;
         $this->host = HOST;
         $this->database = DATABASE;
+    }*/
+
+    public function __construct()
+    {
+        $this->username = getenv('USERNAME');
+        $this->password = getenv('PASSWORD');
+        $this->host = getenv('HOST');
+        $this->database = getenv('DATABASE');
     }
 
     public function connect()
@@ -26,8 +34,6 @@ class Database {
                 $this->password,
                 ["sslmode"  => "prefer"]
             );
-
-            // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
         }
