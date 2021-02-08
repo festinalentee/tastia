@@ -11,4 +11,3 @@ class Repository {
         $this->database = new Database();
     }
 }
-//wzorzec projektowy - aby instancja tworzyla sie jako pojedynczy obiekt istniejacy w calym programie

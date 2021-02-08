@@ -5,10 +5,10 @@ require_once __DIR__ . '/../models/Recipe.php';
 
 class RecipeRepository extends Repository {
 
-    public function getRecipe(int $id): ?Recipe {
+    public function getRecipeById(int $id): Recipe {
 
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.recipes WHERE id = :id
+            SELECT * FROM recipes WHERE id = :id
         ');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -18,9 +18,12 @@ class RecipeRepository extends Repository {
             throw new UnexpectedValueException('Recipe not found');
         }
 
-        return new Recipe($recipe ['title'], $recipe ['instructions'], $recipe ['ingredients'],
+        $result = new Recipe($recipe ['title'], $recipe ['instructions'], $recipe ['ingredients'],
             $recipe ['category'], $recipe ['preparation_time'], $recipe ['servings'],
-            $recipe ['difficulty'], $recipe ['image'], $recipe ['id_users'] );
+            $recipe ['difficulty'], $recipe ['image'], $recipe ['id_users']);
+        $result->setId($recipe['id']);
+
+        return $result;
     }
 
     public function addRecipe(Recipe $recipe): void {
@@ -49,9 +52,11 @@ class RecipeRepository extends Repository {
         $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($recipes as $recipe) {
-            $result[] = new Recipe($recipe ['title'], $recipe ['instructions'], $recipe ['ingredients'],
+            $get_recipe = new Recipe($recipe ['title'], $recipe ['instructions'], $recipe ['ingredients'],
                 $recipe ['category'], $recipe ['preparation_time'], $recipe ['servings'],
                 $recipe ['difficulty'], $recipe ['image'], $recipe ['id_users']);
+            $get_recipe->setId($recipe['id']);
+            $result[] = $get_recipe;
         }
         return $result;
     }
@@ -80,13 +85,43 @@ class RecipeRepository extends Repository {
         $stmt->bindParam(':id_users', $_SESSION['id'],PDO::PARAM_INT);
         $stmt->bindParam(':category', $category,PDO::PARAM_INT);
         $stmt->execute();
-        $breakfasts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($breakfasts as $breakfast) {
-            $result[] = new Recipe($breakfast ['title'], $breakfast ['instructions'], $breakfast ['ingredients'],
-                $breakfast ['category'], $breakfast ['preparation_time'], $breakfast ['servings'],
-                $breakfast ['difficulty'], $breakfast ['image'], $breakfast ['id_users']);
+        foreach ($recipes as $recipe) {
+            $get_recipe = new Recipe($recipe ['title'], $recipe ['instructions'], $recipe ['ingredients'],
+                $recipe ['category'], $recipe ['preparation_time'], $recipe ['servings'],
+                $recipe ['difficulty'], $recipe ['image'], $recipe ['id_users']);
+            $get_recipe->setId($recipe['id']);
+            $result[] = $get_recipe;
         }
         return $result;
+    }
+
+    public function modifyRecipe($title, $instructions, $ingredients, $category, $preparation_time, $servings, $difficulty, $image, $id): void {
+
+        $stmt = $this->database->connect()->prepare('
+        UPDATE recipes SET title = :title, instructions = :instructions, ingredients = :ingredients, category = :category, preparation_time = :preparation_time,
+                servings = :servings, difficulty = :difficulty, image = :image WHERE id = :id 
+        ');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':instructions', $instructions);
+        $stmt->bindParam(':ingredients', $ingredients);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':preparation_time', $preparation_time);
+        $stmt->bindParam(':servings', $servings);
+        $stmt->bindParam(':difficulty', $difficulty);
+        $stmt->bindParam(':image', $image);
+
+        $stmt->execute();
+    }
+
+    public function deleteRecipeById($id): void {
+
+        $stmt = $this->database->connect()->prepare('
+        DELETE FROM recipes WHERE id = :id
+        ');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

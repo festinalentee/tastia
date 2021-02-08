@@ -12,6 +12,7 @@ class Recipe {
     private $difficulty;
     private $image;
     private $id_users;
+    private $id;
 
 
     public function __construct($title, $instructions, $ingredients, $category, $preparation_time, $servings, $difficulty, $image, $id_users)
@@ -57,7 +58,7 @@ class Recipe {
         $this->ingredients = $ingredients;
     }
 
-    public function getImage(): string
+    public function getImage()
     {
         return $this->image;
     }
@@ -115,5 +116,15 @@ class Recipe {
     public function setIdUsers($id_users): void
     {
         $this->id_users = $id_users;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
     }
 }

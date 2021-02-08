@@ -22,28 +22,37 @@ class RecipeController extends AppController {
 
     public function recipes() {
 
+        if (isset($_POST['delete-recipe'])) {
+            $this->deleteRecipe();
+        }
         $recipes = $this->recipeRepository->getRecipes();
         return $this->render('recipes', ['recipes' => $recipes]);
     }
 
     public function addRecipe() {
 
-        if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
+        if ($this->isPost()) {
+            if(is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
 
-            move_uploaded_file(
-                $_FILES['file']['tmp_name'],
-                dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
-            );
+                $this->moveUploadedFile();
+                $recipe = new Recipe($_POST['title'], $_POST['instructions'], $_POST['ingredients'],
+                    $_POST['category'], $_POST['preparation_time'], $_POST['servings'],
+                    $_POST['difficulty'], $_FILES['file']['name'], $_POST['id_users']);
+                $this->recipeRepository->addRecipe($recipe);
 
-            $recipe = new Recipe($_POST['title'], $_POST['instructions'], $_POST['ingredients'],
-                $_POST['category'], $_POST['preparation_time'], $_POST['servings'],
-                $_POST['difficulty'], $_FILES['file']['name'], $_POST['id_users']);
-
-            $this->recipeRepository->addRecipe($recipe);
-
-            return $this->render('recipes', ['recipes' => $this->recipeRepository->getRecipes(), 'message' => $this->message]);
+                return $this->render('recipes', ['recipes' => $this->recipeRepository->getRecipes(), 'messages' => $this->message]);
+            }
+            return $this->render('add-recipe', ['messages' => ["Please upload file!"]]);
         }
-        return $this->render('add-recipe', ['message' => $this->message]);
+        return $this->render('add-recipe', ['messages' => $this->message]);
+    }
+
+    private function moveUploadedFile() {
+
+        move_uploaded_file(
+            $_FILES['file']['tmp_name'],
+            dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
+        );
     }
 
     public function search() {
@@ -60,6 +69,55 @@ class RecipeController extends AppController {
             echo json_encode($this->recipeRepository->getRecipeByTitle($decoded['search']));
         }
     }
+
+    public function recipe() {
+
+        if (isset($_POST['update-button'])) {
+
+            return $this->recipeAfterChanges();
+        }
+        if (isset($_POST['recipe-id'])) {
+
+            try {
+                $recipe = $this->recipeRepository->getRecipeById(intval($_POST['recipe-id']));
+
+            } catch (UnexpectedValueException $e) {
+
+                $this->render('recipes', ['recipes' => $this->recipeRepository->getRecipes()]);
+            }
+
+            return $this->render('recipe', ['recipe' => $recipe]);
+        }
+    }
+
+    public function modifyRecipe() {
+
+        if (isset($_POST['update-recipe'])) {
+
+            return $this->render('modify-recipe', ['recipe' => $this->recipeRepository->getRecipeById($_POST['update-recipe'])]);
+        }
+    }
+
+    private function recipeAfterChanges() {
+
+        $id = $_POST['update-button'];
+
+        if (is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
+            $this->moveUploadedFile();
+        }
+
+        $this->recipeRepository->modifyRecipe($_POST['title'], $_POST['instructions'], $_POST['ingredients'],
+                $_POST['category'], $_POST['preparation_time'], $_POST['servings'],
+                $_POST['difficulty'], $_FILES['file']['name'], $id);
+
+        return $this->render('recipe', ['recipe' => $this->recipeRepository->getRecipeById($id)]);
+    }
+
+    public function deleteRecipe() {
+
+        $this->recipeRepository->deleteRecipeById($_POST["delete-recipe"]);
+    }
+
 
     private function validate(array $file): bool {
 

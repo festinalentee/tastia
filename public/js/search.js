@@ -41,6 +41,8 @@ function createRecipe(recipe) {
     image.src = `/public/uploads/${recipe.image}`;
     const title = clone.querySelector("h2");
     title.innerHTML = recipe.title;
+    const buttonValue = clone.querySelector(".recipe-id-button");
+    buttonValue.value = recipe.id;
 
     recipeContainer.appendChild(clone);
 }

@@ -10,7 +10,6 @@ session_unset();
 Session::startSession();
 
 Routing::get('', 'DefaultController');
-Routing::get('login', 'DefaultController');
 Routing::get('recipes', 'RecipeController');
 Routing::get('register', 'SecurityController');
 
@@ -24,5 +23,7 @@ Routing::post('lunch', 'CategoryController');
 Routing::post('dinner', 'CategoryController');
 Routing::post('dessert', 'CategoryController');
 Routing::post('drink', 'CategoryController');
+Routing::post('recipe', 'RecipeController');
+Routing::post('modifyRecipe', 'RecipeController');
 
 Routing::run($path);
