@@ -22,6 +22,7 @@ class RecipeController extends AppController {
 
     public function recipes() {
 
+        Session::sessionVerification();
         if (isset($_POST['delete-recipe'])) {
             $this->deleteRecipe();
         }
@@ -31,6 +32,7 @@ class RecipeController extends AppController {
 
     public function addRecipe() {
 
+        Session::sessionVerification();
         if ($this->isPost()) {
             if(is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
 
@@ -72,6 +74,7 @@ class RecipeController extends AppController {
 
     public function recipe() {
 
+        Session::sessionVerification();
         if (isset($_POST['update-button'])) {
 
             return $this->recipeAfterChanges();
@@ -92,6 +95,7 @@ class RecipeController extends AppController {
 
     public function modifyRecipe() {
 
+        Session::sessionVerification();
         if (isset($_POST['update-recipe'])) {
 
             return $this->render('modify-recipe', ['recipe' => $this->recipeRepository->getRecipeById($_POST['update-recipe'])]);

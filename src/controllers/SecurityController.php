@@ -74,7 +74,7 @@ class SecurityController extends AppController {
             return false;
         }
         elseif ($_POST['password'] !== $_POST['confirmedPassword']) {
-            $this->render('register', ['messages' => ['Please provide the same password!']]);
+            $this->render('register', ['messages' => ['Please provide the same passwords!']]);
             return false;
         }
         return true;
@@ -89,7 +89,7 @@ class SecurityController extends AppController {
 
         if(!$upper_letter || !$lower_letters || !$number || !$special_character || strlen($_POST['password']) < 8) {
             $this->render('register', ['messages' => ['Your password needs to be at least 8 characters, 
-                include both lower and upper case letters, number and special character.']]);
+                include lower and upper case letters, number and special character.']]);
             return false;
         }
         return true;

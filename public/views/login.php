@@ -32,6 +32,9 @@
                                 echo $message;
                             }
                         }
+                        if (isset($_GET['message'])) {
+                            echo $_GET['message'];
+                        }
                         ?>
                     </div>
                     <input name="email" type="text" placeholder="email@email.com">

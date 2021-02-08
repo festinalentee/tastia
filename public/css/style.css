@@ -221,7 +221,7 @@ header {
 
 .messages {
     width: 90%;
-    color: #343a40;
+    color: #000000;
     text-align: center;
-    font: normal normal normal 15px/15px "Times New Roman";
+    font: normal bold normal 15px/15px "Calibri Light";
 }
