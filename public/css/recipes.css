@@ -37,6 +37,10 @@ section {
     padding: 1.5em 0;
 }
 
+.add-recipe-button:hover {
+    background: #1DE3EC;
+}
+
 .recipe-id-button {
     text-align: center;
     width: 100%;
@@ -51,7 +55,242 @@ section {
     box-shadow: 0 8px 8px #00000029;
 }
 
+.recipe-id-button:hover {
+    background: #00C6B9;
+}
+
 .fas.fa-plus {
     color: #FFFFFF;
     font-size: 1.1em;
+}
+
+.fas.fa-bars {
+    display: none;
+}
+
+@media screen and (max-device-width: 1024px) {
+    * {
+        font-size: 15px;
+    }
+
+    nav {
+        width: 22%;
+    }
+
+    nav > img {
+        width: 70%;
+        margin: 1.5em auto;
+    }
+
+    .allRecipes > div {
+        height: 300px;
+    }
+
+    header {
+        padding: 0.5em 1.5em;
+
+    }
+
+    .search-bar > input{
+        padding: 1.5em 0;
+        font-size: 11px;
+    }
+
+    .add-recipe-button {
+        padding: 1.5em 0;
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-device-width: 768px) {
+
+    * {
+        font-size: 18px;
+    }
+
+    nav {
+        width: 30%;
+    }
+
+    .allRecipes > div {
+        height: 250px;
+    }
+
+    .allRecipes > div > img {
+        height: 78%;
+    }
+
+    .search-bar > input{
+        font-size: 12px;
+    }
+
+    .add-recipe-button {
+        font-size: 12px;
+        width: 110%;
+    }
+}
+
+
+@media screen and (max-device-width: 650px) {
+
+    * {
+        font-size: 20px;
+    }
+
+    nav {
+        width: 35%;
+    }
+
+    .allRecipes > div {
+        height: 320px;
+    }
+
+    .allRecipes > div > img {
+        height: 82%;
+    }
+
+    .search-bar > input{
+        font-size: 13px;
+    }
+
+    .add-recipe-button {
+        font-size: 13px;
+        width: 120%;
+    }
+
+    section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-device-width: 425px) {
+
+    * {
+        font-size: 30px;
+    }
+
+    .fas.fa-bars {
+        display: block;
+        color: #00C6B9;
+        font-size: 2em;
+        margin-left: 24px;
+        margin-top: 25px;
+        text-shadow: 0 9px 9px #00000029;
+    }
+
+    ul {
+        display: none;
+    }
+
+    nav > img {
+        display: none;
+    }
+
+    nav {
+        background-color: #FFFFFF;
+        width: 9%;
+    }
+
+    .search-bar > input{
+        font-size: 20px;
+        width: 130%;
+    }
+
+    header {
+        padding: 0.5em 0;
+        padding-right: 3.5em;
+        padding-left: 1em;
+    }
+
+    .add-recipe-button {
+        font-size: 20px;
+        padding: 1.5em 0;
+        width: 170%;
+    }
+
+    section {
+        width: 87%;
+    }
+
+    main {
+        width: 100%
+    }
+
+    .allRecipes > div {
+        height: 380px;
+    }
+
+    .allRecipes > div > img {
+        height: 79%;
+    }
+}
+
+@media screen and (max-device-width: 375px) {
+
+    * {
+        font-size: 40px;
+    }
+
+    .fas.fa-bars {
+        font-size: 2em;
+        margin-left: 23px;
+        margin-top: 30px;
+    }
+
+    section {
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .allRecipes > div {
+        height: 550px;
+    }
+
+    .allRecipes > div > img {
+        height: 82%;
+    }
+
+    .search-bar > input{
+        font-size: 25px;
+        width: 130%;
+    }
+
+    .add-recipe-button {
+        font-size: 25px;
+        padding: 1.5em 0;
+        width: 10em;
+    }
+
+    header {
+        padding-right: 4.5em;
+        padding-left: 1em;
+    }
+}
+
+@media screen and (max-device-width: 320px) {
+
+    * {
+        font-size: 46px;
+    }
+
+    .search-bar > input{
+        font-size: 28px;
+    }
+
+    .add-recipe-button {
+        font-size: 27px;
+    }
+
+    header {
+        padding-right: 5em;
+        padding-left: 1em;
+    }
+
+    .fas.fa-bars {
+        font-size: 2em;
+        margin-left: 28px;
+        margin-top: 34px;
+    }
 }

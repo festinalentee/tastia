@@ -12,6 +12,7 @@
 <body>
     <div class="base-container">
         <nav>
+            <i class="fas fa-bars"></i>
             <img src="public/img/log.png">
             <ul>
                 <li>

@@ -22,11 +22,6 @@
                 </div>
             </header>
             <section class="grid-container">
-                <div class="instructions inputs">
-                    <h1>Instructions</h1>
-
-                    <textarea name="instructions" rows=23><?= $recipe->getInstructions() ?></textarea>
-                </div>
                 <div class="photo">
                     <div class="messages">
                         <?php
@@ -53,9 +48,13 @@
                     <input name="servings" type="text" value="<?= $recipe->getServings() ?>">
                     <input name="difficulty" type="text" value="<?= $recipe->getDifficulty() ?>">
                 </div>
+                <div class="instructions inputs">
+                    <h1>Instructions</h1>
+                    <textarea name="instructions" rows=30><?= $recipe->getInstructions() ?></textarea>
+                </div>
                 <div class="ingredients inputs">
                     <h1>Ingredients</h1>
-                    <textarea name="ingredients" rows=14"><?= $recipe->getIngredients() ?></textarea>
+                    <textarea name="ingredients" rows=30"><?= $recipe->getIngredients() ?></textarea>
                 </div>
             </section>
         </form>

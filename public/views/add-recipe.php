@@ -22,10 +22,6 @@
                 </div>
             </header>
             <section class="grid-container">
-                <div class="instructions inputs">
-                    <h1>Instructions</h1>
-                    <textarea name="instructions" rows=23 placeholder="Write instructions..."></textarea>
-                </div>
                 <div class="photo">
                     <i class="fas fa-camera"></i>
                     <input type="file" name="file"/><br>
@@ -50,9 +46,13 @@
                     <input name="servings" type="text" placeholder="servings">
                     <input name="difficulty" type="text" placeholder="difficulty">
                 </div>
+                <div class="instructions inputs">
+                    <h1>Instructions</h1>
+                    <textarea name="instructions" rows=30 placeholder="Write instructions..."></textarea>
+                </div>
                 <div class="ingredients inputs">
                     <h1>Ingredients</h1>
-                    <textarea name="ingredients" rows=13 placeholder="Write ingredients..."></textarea>
+                    <textarea name="ingredients" rows=30 placeholder="Write ingredients..."></textarea>
                 </div>
             </section>
         </form>
