@@ -38,7 +38,7 @@ class RecipeController extends AppController {
                 $this->moveUploadedFile();
                 $this->addNewRecipe($_FILES['file']['name']);
             }
-            if (!is_uploaded_file($_FILES['file']['tmp_name'])) {
+            else {
                 $image = $this->recipeRepository->getDefaultImage(13);
                 $this->addNewRecipe($image);
             }
